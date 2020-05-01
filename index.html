@@ -9,7 +9,7 @@
 
 <div ng-app="myApp" ng-controller="myCtrl" class="container">
 <div class="jumbotron">
-        <h2>Test your PSLE T-Score</h2>
+        <h2>Simulate your PSLE T-Score</h2>
         
       
    <p>Enter your P6 marks</p>
@@ -50,7 +50,7 @@
             <td><input type="number" ng-model="scienceSD"></td>
           </tr>
           <tr class="info"><td>Total </td>
-            <td></td>
+            <td> T-Score =</td>
             <td>
                 {{mathTScore()+engTScore()+mtTScore()+scienceTScore()}}
           </td></tr>
