@@ -2,13 +2,60 @@
 <html>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<div ng-app="myApp" ng-controller="myCtrl">
-   <p>Name: <input type="text" ng-model="name"></p>
-  <p ng-bind="name"></p>
-{{ firstName + " " + lastName }}
-   <p>Maths : <input type="number" ng-model="math"> Mean : <input type="number" text="75" ng-model="mathMean"> SD : <input type="number" text="15" ng-model="mathSD"> </p>
-   {{50 +10 *(math -75)/15}}
+<div ng-app="myApp" ng-controller="myCtrl" class="container">
+<div class="jumbotron">
+        <h2>Test your PSLE T-Score</h2>
+        
+      
+   <p>Enter your P6 marks</p>
+    <table class="table">
+        <tr >
+          <td>Subject</td>
+          <td>Your Score</td>
+          <td>T-Score</td>
+          <td>Mean</td>
+          <td>SD</td>
+        </tr>
+        <tr >
+            <td>Maths</td>
+            <td><input type="number" ng-model="math"></td>
+            <td>{{mathTScore()}}</td>
+            <td><input type="number" ng-model="mathMean" width="10"></td>
+            <td><input type="number" ng-model="mathSD"></td>
+          </tr>
+          <tr >
+            <td>English</td>
+            <td><input type="number" ng-model="eng"></td>
+            <td>{{engTScore()}}</td>
+            <td><input type="number" ng-model="engMean" width="10"></td>
+            <td><input type="number" ng-model="engSD"></td>
+          </tr>
+          <tr >
+            <td>Mother Tongue</td>
+            <td><input type="number" ng-model="mt"></td>
+            <td>{{mtTScore()}}</td>
+            <td><input type="number" ng-model="mtMean" width="10"></td>
+            <td><input type="number" ng-model="mtSD"></td>
+          </tr>
+          <tr >
+            <td>Science</td>
+            <td><input type="number" ng-model="science"></td>
+            <td>{{scienceTScore()}}</td>
+            <td><input type="number" ng-model="scienceMean" width="10"></td>
+            <td><input type="number" ng-model="scienceSD"></td>
+          </tr>
+          <tr class="info"><td>Total </td>
+            <td></td>
+            <td>
+                {{mathTScore()+engTScore()+mtTScore()+scienceTScore()}}
+          </td></tr>
+      </table>
+    </div>   
 </div>
    
    
@@ -17,6 +64,30 @@ var app = angular.module("myApp", []);
 app.controller("myCtrl", function($scope) {
   $scope.firstName = "John";
   $scope.lastName = "Doe";
+  $scope.math = 78;
+  $scope.mathMean = 75;
+  $scope.mathSD = 15;
+  $scope.eng = 79;
+  $scope.engMean = 75;
+  $scope.engSD = 15;
+  $scope.mt = 80;
+  $scope.mtMean = 75;  
+  $scope.mtSD = 15;
+  $scope.science = 84;
+  $scope.scienceMean = 75;
+  $scope.scienceSD = 15;
+  $scope.mathTScore = function() {
+    return Math.round((50 +10*($scope.math - $scope.mathMean)/$scope.mathSD)) ;  
+  };
+  $scope.engTScore = function() {
+    return Math.round(50 +10*($scope.eng - $scope.engMean)/$scope.engSD) ;  
+  };
+  $scope.mtTScore = function() {
+    return Math.round(50 +10*($scope.mt - $scope.mtMean)/$scope.mtSD) ;  
+  };
+  $scope.scienceTScore = function() {
+    return Math.round(50 +10*($scope.science - $scope.scienceMean)/$scope.scienceSD) ;  
+  };
 });
 </script>
 
